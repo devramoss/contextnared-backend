@@ -20,7 +20,7 @@ module.exports = (app) =>{
             from: user,
             to: user,
             replyTo: req.body.email,
-            subject: req.body.nome,
+            subject: `${req.body.nome} lhe enviou uma mensagem`,
             text: `${req.body.assunto}`,
             html: req.body.assunto
         }
