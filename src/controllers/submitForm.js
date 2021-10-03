@@ -6,7 +6,7 @@ const user = "contatocontextnared@gmail.com";
 const pass = process.env.GMAIL_PASS;
 
 module.exports = (app) =>{
-   app.post('/enviarformulario',(req, resp, next)=>{
+   app.post('/enviarformulario', (req, resp)=>{
         const transporter = nodemailer.createTransport({
             host: "smtp.gmail.com",
             port: 465, 
@@ -16,21 +16,22 @@ module.exports = (app) =>{
                 pass
             },
         });
-    
-        transporter.sendMail({
+        const emailToBeSent = {
             from: user,
             to: user,
             replyTo: req.body.email,
             subject: req.body.nome,
             text: `${req.body.assunto}`,
             html: req.body.assunto
-        })
-        .then(information => {
-            console.log(information)
-            resp.send(information)
-        })
-        .catch(error => {
-            console.log(error)
-        })
+        }
+
+        transporter.sendMail(emailToBeSent, (error)=>{
+            if(error){
+                console.log(error);
+            }
+            else{
+                console.log("E-mail sent successfully");
+            }
+        });
     });
 }
