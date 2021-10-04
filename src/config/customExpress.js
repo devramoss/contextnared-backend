@@ -10,8 +10,9 @@ module.exports = () =>{
     app.use(cors({origin: `${process.env.CORS_ORIGIN_URL}`}));
 
     consign()
-        .include('./src/server/controllers')
+        .include('./src/controllers')
         .into(app)
 
     return app;
 }
+

@@ -6,7 +6,7 @@ const user = "contatocontextnared@gmail.com";
 const pass = process.env.GMAIL_PASS;
 
 module.exports = (app) =>{
-   app.post('/', (req, resp)=>{
+   app.post('/enviarformulario', (req, resp)=>{
         const transporter = nodemailer.createTransport({
             host: "smtp.gmail.com",
             port: 587, 
